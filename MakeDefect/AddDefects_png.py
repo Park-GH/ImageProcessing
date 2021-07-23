@@ -21,15 +21,18 @@ for file in file_list:
     h = src.shape[0]
     w = src.shape[1]
 
-    #if h > 255 or w > 255:
-    #    if h > w:
-    #        scale = 255/h
-    #    else:
-    #        scale = 255/w
+    if h > 1024 or w > 1024:
+       if h > w:
+           scale = 1024/h
+       else:
+           scale = 1024/w
+    print("="*10)
+    print(h)
+    print(w)
+    H_pos = random.randint(0, 1024 - h*scale)
+    W_pos = random.randint(0, 1024 - w*scale)
 
-    H_pos = random.randint(200, 800 - h)
-    W_pos = random.randint(200, 800 - w)
-
+    
     cp = (src.shape[1]/2, src.shape[0]/2)   #회전 중심좌표
     rot = cv2.getRotationMatrix2D(cp, RotAngle, RotScale*scale) #중심좌표, 각도(반시계), 스케일
     src = cv2.warpAffine(src, rot, (0, 0))
