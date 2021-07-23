@@ -8,8 +8,11 @@ path = "./Makedefect/test/B/"
 
 defects_list = os.listdir("./Makedefect/defects/")
 AnsImage = cv2.imread("./Makedefect/Ans.png", cv2.IMREAD_COLOR)
-
 file_list = os.listdir(path)
+file_list2 = os.listdir("./Makedefect/test/B_check")
+for ReduFile in file_list2:
+    file_list.remove(ReduFile)
+
 print(file_list)
 for file in file_list:
     RotAngle = random.randint(0, 359)
@@ -26,9 +29,7 @@ for file in file_list:
            scale = 1024/h
        else:
            scale = 1024/w
-    print("="*10)
-    print(h)
-    print(w)
+
     H_pos = random.randint(0, 1024 - h*scale)
     W_pos = random.randint(0, 1024 - w*scale)
 
